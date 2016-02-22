@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNet.Http;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using MicroService;
 
-namespace MultiTenancy
+namespace MultiTenancy.MicroService
 {
     abstract class TenantService
     {
-        internal abstract Task SetTenant(HttpContext context);
+        internal abstract Task SetTenant(MessageContext context);
         internal abstract object GetTenant();
     }
 
@@ -24,7 +24,7 @@ namespace MultiTenancy
             _providers = providers;
         }
 
-        internal override async Task SetTenant(HttpContext context)
+        internal override async Task SetTenant(MessageContext context)
         {
             foreach (var provider in _providers)
             {

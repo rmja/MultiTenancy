@@ -7,6 +7,6 @@ namespace MultiTenancy
 {
     public class MultiTenancyOptions
     {
-        public bool RequireTenant { get; set; }
+        public bool RequireTenant { get; set; } = false;
     }
 }

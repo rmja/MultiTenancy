@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MultiTenancy.Providers
+namespace MultiTenancy.AspNet.Providers
 {
     public class SubDomainTenantProvider<TTenant> : ITenantProvider<TTenant>
         where TTenant : class
@@ -36,8 +36,8 @@ namespace MultiTenancy.Providers
                 {
                     _logger.LogDebug($"Sub domain is {subDomain}.");
 
-                    var tenantProvider = context.RequestServices.GetRequiredService<INamedTenantLookup<TTenant>>();
-                    var tenant = await tenantProvider.LookupAsync(subDomain);
+                    var tenantLookup = context.RequestServices.GetRequiredService<INamedTenantLookup<TTenant>>();
+                    var tenant = await tenantLookup.LookupAsync(subDomain);
                     return tenant;
                 }
                 else

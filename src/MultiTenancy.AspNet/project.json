@@ -1,12 +1,13 @@
 ﻿{
   "version": "1.0.0-*",
   "dependencies": {
+    "MultiTenancy.Core": "",
     "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
     "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
   },
   "frameworks": {
-    "net451": { }
+    "dnx451": { }
   }
 }
