@@ -12,29 +12,25 @@ namespace MultiTenancy.MicroService
     }
 
     class TenantService<TTenant> : TenantService, ITenantService<TTenant>
-        where TTenant : class
     {
-        private readonly IEnumerable<ITenantProvider<TTenant>> _providers;
+        private readonly IMicroServiceTenantResolver<TTenant> _resolver;
 
         public TTenant Tenant { get; private set; }
         object ITenantService.Tenant => Tenant;
 
-        public TenantService(IEnumerable<ITenantProvider<TTenant>> providers)
+        public TenantService(IMicroServiceTenantResolver<TTenant> resolver)
         {
-            _providers = providers;
+            _resolver = resolver;
         }
 
         internal override async Task SetTenant(MessageContext context)
         {
-            foreach (var provider in _providers)
-            {
-                var tenant = await provider.GetTenantAsync(context);
+            var tenant = await _resolver.ResolveAsync(context);
 
-                if (tenant != null)
-                {
-                    Tenant = tenant;
-                    return;
-                }
+            if (tenant != null)
+            {
+                Tenant = tenant;
+                return;
             }
         }
 

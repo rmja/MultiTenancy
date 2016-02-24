@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace MultiTenancy
 {
-    public interface INamedTenantLookup<TTenant>
+    public interface IAliasTenantResolver<TTenant>
+        where TTenant : ITenant
     {
-        Task<TTenant> LookupAsync(string name);
+        Task<TTenant> ResolveAsync(string alias);
     }
 }

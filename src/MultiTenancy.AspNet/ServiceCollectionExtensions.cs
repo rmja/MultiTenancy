@@ -1,18 +1,15 @@
-﻿using MultiTenancy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using MultiTenancy.AspNet.Providers;
+﻿using Microsoft.AspNet.Http;
+using Microsoft.Extensions.Configuration;
+using MultiTenancy;
 using MultiTenancy.AspNet;
+using MultiTenancy.AspNet.TenantResolvers;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
-        public static AspNetMultiTenancyBuilder<TTenant> AddAspNet<TTenant>(this MultiTenancyBuilder<TTenant> builder)
-            where TTenant : class
+        public static MultiTenancyBuilder<TTenant> AddAspNetHostnameTenancy<TTenant>(this MultiTenancyBuilder<TTenant> builder, IConfiguration configuration)
+            where TTenant : IHostnameTenant
         {
             var services = builder.Services;
 
@@ -20,30 +17,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddScoped(s => (ITenantService)s.GetService<ITenantService<TTenant>>())
                 .AddScoped(s => (TenantService)s.GetService<ITenantService<TTenant>>());
 
-            return new AspNetMultiTenancyBuilder<TTenant>(services);
-        }
+            services.AddSingleton<IAspNetTenantResolver<TTenant>, HostnameTenantResolver<TTenant>>();
 
-        public static AspNetMultiTenancyBuilder<TTenant> AddSubDomainProvider<TTenant>(this AspNetMultiTenancyBuilder<TTenant> builder)
-            where TTenant : class
-        {
-            var services = builder.Services;
-
-            services.AddSingleton<ITenantProvider<TTenant>, SubDomainTenantProvider<TTenant>>();
+            services.Configure<HostnameTenantResolverOptions<TTenant>>(configuration);
 
             return builder;
-        }
-    }
-}
-
-namespace MultiTenancy.AspNet
-{
-    public class AspNetMultiTenancyBuilder<TTenant>
-    {
-        internal IServiceCollection Services { get; private set; }
-
-        public AspNetMultiTenancyBuilder(IServiceCollection services)
-        {
-            Services = services;
         }
     }
 }

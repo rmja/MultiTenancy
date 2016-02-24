@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.OptionsModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MultiTenancy.AspNet
 {
@@ -19,11 +20,11 @@ namespace MultiTenancy.AspNet
             _options = options;
         }
 
-        public async Task Invoke(HttpContext context, TenantService service)
+        public async Task Invoke(HttpContext context, TenantService tenantService)
         {
-            await service.SetTenant(context);
+            await tenantService.SetTenant(context);
 
-            if (_options.Value.RequireTenant && service.GetTenant() == null)
+            if (_options.Value.RequireTenant && tenantService.GetTenant() == null)
             {
                 context.Response.StatusCode = 404;
             }
