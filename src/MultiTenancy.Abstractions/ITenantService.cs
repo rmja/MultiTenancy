@@ -2,10 +2,11 @@
 {
     public interface ITenantService
     {
-        object Tenant { get; }
+        ITenant Tenant { get; }
     }
 
     public interface ITenantService<TTenant> : ITenantService
+        where TTenant : ITenant
     {
         new TTenant Tenant { get; }
     }

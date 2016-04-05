@@ -1,0 +1,12 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "MultiTenancy.Abstractions Class Library",
+  "authors": [ "rmja" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}

@@ -8,15 +8,16 @@ namespace MultiTenancy.AspNet
     public abstract class TenantService
     {
         internal abstract Task SetTenant(HttpContext context);
-        internal abstract object GetTenant();
+        internal abstract ITenant GetTenant();
     }
 
     public class TenantService<TTenant> : TenantService, ITenantService<TTenant>
+        where TTenant : ITenant
     {
         private readonly IAspNetTenantResolver<TTenant> _resolver;
 
         public TTenant Tenant { get; private set; }
-        object ITenantService.Tenant => Tenant;
+        ITenant ITenantService.Tenant => Tenant;
 
         public TenantService(IAspNetTenantResolver<TTenant> resolver)
         {
@@ -28,7 +29,7 @@ namespace MultiTenancy.AspNet
             Tenant = await _resolver.ResolveAsync(context);
         }
 
-        internal override object GetTenant()
+        internal override ITenant GetTenant()
         {
             return Tenant;
         }

@@ -194,11 +194,16 @@
           "lib/net451/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "MultiTenancy.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
+      },
       "MultiTenancy.Core/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "MultiTenancy.Abstractions": null
         }
       },
       "Queueing.Abstractions/1.0.0": {
@@ -398,11 +403,16 @@
           "lib/net451/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "MultiTenancy.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
+      },
       "MultiTenancy.Core/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "MultiTenancy.Abstractions": null
         }
       },
       "Queueing.Abstractions/1.0.0": {
@@ -602,11 +612,16 @@
           "lib/net451/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "MultiTenancy.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
+      },
       "MultiTenancy.Core/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "MultiTenancy.Abstractions": null
         }
       },
       "Queueing.Abstractions/1.0.0": {
@@ -623,6 +638,10 @@
     "MicroService.Abstractions/1.0.0": {
       "type": "project",
       "path": "../../../Queueing/src/MicroService.Abstractions/project.json"
+    },
+    "MultiTenancy.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../MultiTenancy.Abstractions/project.json"
     },
     "MultiTenancy.Core/1.0.0": {
       "type": "project",

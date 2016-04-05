@@ -2,6 +2,7 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "MultiTenancy.Abstractions": "",
     "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
   },
 

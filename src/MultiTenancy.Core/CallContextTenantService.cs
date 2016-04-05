@@ -25,6 +25,6 @@ namespace MultiTenancy
             }
         }
 
-        object ITenantService.Tenant => Tenant;
+        ITenant ITenantService.Tenant => Tenant;
     }
 }

@@ -8,15 +8,16 @@ namespace MultiTenancy.MicroService
     abstract class TenantService
     {
         internal abstract Task SetTenant(MessageContext context);
-        internal abstract object GetTenant();
+        internal abstract ITenant GetTenant();
     }
 
     class TenantService<TTenant> : TenantService, ITenantService<TTenant>
+        where TTenant : ITenant
     {
         private readonly IMicroServiceTenantResolver<TTenant> _resolver;
 
         public TTenant Tenant { get; private set; }
-        object ITenantService.Tenant => Tenant;
+        ITenant ITenantService.Tenant => Tenant;
 
         public TenantService(IMicroServiceTenantResolver<TTenant> resolver)
         {
@@ -34,7 +35,7 @@ namespace MultiTenancy.MicroService
             }
         }
 
-        internal override object GetTenant()
+        internal override ITenant GetTenant()
         {
             return Tenant;
         }

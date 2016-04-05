@@ -106,6 +106,10 @@
         "runtime": {
           "lib/net451/Microsoft.Extensions.Primitives.dll": {}
         }
+      },
+      "MultiTenancy.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
       }
     },
     "DNX,Version=v4.5.1/win7-x86": {
@@ -212,6 +216,10 @@
         "runtime": {
           "lib/net451/Microsoft.Extensions.Primitives.dll": {}
         }
+      },
+      "MultiTenancy.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
       }
     },
     "DNX,Version=v4.5.1/win7-x64": {
@@ -318,10 +326,18 @@
         "runtime": {
           "lib/net451/Microsoft.Extensions.Primitives.dll": {}
         }
+      },
+      "MultiTenancy.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
       }
     }
   },
   "libraries": {
+    "MultiTenancy.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../MultiTenancy.Abstractions/project.json"
+    },
     "Microsoft.Extensions.Configuration/1.0.0-rc1-final": {
       "type": "package",
       "serviceable": true,
@@ -421,6 +437,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "MultiTenancy.Abstractions ",
       "Microsoft.Extensions.OptionsModel >= 1.0.0-rc1-final"
     ],
     "DNX,Version=v4.5.1": []

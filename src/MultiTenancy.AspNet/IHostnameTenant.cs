@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MultiTenancy
 {
-    public interface IHostnameTenant
+    public interface IHostnameTenant : ITenant
     {
         string[] Hostnames { get; }
     }
